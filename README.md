@@ -87,7 +87,6 @@ ls /usr/share/zoneinfo/
 ln -sf /usr/share/zoneinfo/Asia/Kolkata > /etc/localtime
 
 timedatectl list-timezones
-
 timedatectl set-timezone Asia/Kolkata
 
 hwclock --systohc
