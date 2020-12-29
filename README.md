@@ -4,17 +4,23 @@
 
 # Connect Wifi
 iwctl
+
 station wlan0 connect <Network name>
+	
 exit
 
-# Ignore if connected to wired network.
 
 # Disk Wipe --This will wipe all the data from your disk
 gdisk /dev/nvme0n1
+
 x
+
 z
+
 y
+
 y
+
 
 # Disk Partition
 cfdisk /dev/nvme0n1
@@ -22,17 +28,27 @@ cfdisk /dev/nvme0n1
 
 # Filesystem set-up
 mkfs.vfat -F32 /dev/nvme0n1p1
+
 mkswap /dev/nvme0n1p2
+
 swapon /dev/nvme0n1p2
+
 mkfs.btrfs /dev/nvme0n1p3
+
 
 # Mount 
 mount /dev/nvme0n1p3 /mnt
+
 btrfs su cr /mnt/@
+
 umount /mnt
+
 mount -o compress=lzo,subvol=@ /dev/nvme0n1p3 /mnt
+
 mkdir -p /mnt/boot/EFI
+
 mount /dev/nvme0n1p1 /mnt/boot/EFI
+
 
 # Base Installation
 pacstrap /mnt base base-devel grub-efi-x86_64 efibootmgr os-prober intel-ucode linux linux-headers linux-firmware zsh zsh-completions wpa_supplicant iwd dialog usbutils nvme-cli nano
@@ -45,8 +61,11 @@ arch-chroot /mnt /bin/bash
 
 # Grub Install
 pacman -S grub-btrfs
+
 grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
+
 grub-mkconfig -o /boot/grub/grub.cfg
+
 
 # Check efi entries
 efibootmgr
@@ -55,13 +74,21 @@ efibootmgr
 nano /etc/locale.gen
 # uncomment en_IN.UTF-8 + en_US.UTF-8
 locale-gen
+
 echo LANG=en_IN.UTF-8 > /etc/locale.conf
+
 export LANG=en_IN.UTF-8
+
 ls /usr/share/zoneinfo/
+
 ln -sf /usr/share/zoneinfo/Asia/Kolkata > /etc/localtime
+
 timedatectl list-timezones
+
 timedatectl set-timezone Asia/Kolkata
+
 hwclock --systohc
+
 
 # Set Hostname (hostnamehere is the hostname)
 echo hostnamehere > /etc/hostname
@@ -79,29 +106,36 @@ pacman -Syu
 
 # Setup Users (username is the user, change to the name that is required)
 passwd
+
 useradd -m -g users -G wheel,uucp -s /bin/zsh username
+
 passwd username
+
 
 # setup sudo for group "wheel" using the root password - must use "EDITOR=nano visudo" command
 EDITOR=nano visudo
-# Search for "#%wheel ALL=(ALL) ALL" and uncomment that line and add this line "Defaults rootpw" below so it looks like the following
-----------------------------------
-%wheel ALL=(ALL) ALL
-Defaults rootpw
-----------------------------------
+# Search for "#%wheel ALL=(ALL) ALL" and uncomment that line and add this line "Defaults rootpw" below so it
 
 # Desktop Environment
 pacman -S xorg-server lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xfce4 xfce4-goodies networkmanager gufw bluez alsa-utils bluez-utils pulseaudio-bluetooth ttf-dejavu ttf-opensans ttf-liberation noto-fonts noto-fonts-emoji ntfs-3g gnome-disk-utility gnome-system-monitor reflector neofetch blueman xorg-xrandr
 
 # Enable services and boot to system
 systemctl enable fstrim.timer
+
 systemctl enable lightdm
+
 systemctl enable NetworkManager
+
 systemctl enable ufw
+
 systemctl enable bluetooth
+
 systemctl mask hibernate.target
+
 exit
+
 reboot
+
 
 # Rank Mirrors
 sudo reflector -c India
