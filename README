@@ -143,6 +143,9 @@ nano ~/.zshrc
 # Install OPTIMUS for NVIDIA+Intel UHD Laptops
 yay -S optimus-manager optimus-manager-qt
 
+#Install Pamac for flatpaks and AUR packages
+yay -S pamac polkit
+
 # Install important packages
 yay -S visual-studio-code-bin gimp rawtherapee darktable libreoffice-fresh gedit vlc telegram-desktop gpart mtools f2fs-tools ntfs-3g exfatprogs udftools jdk-openjdk grub-customizer numix-gtk-theme gvfs-smb gvfs-mtp libmtp android-udev android-tools mate-calc google-chrome skype spotify discord neofetch
 
