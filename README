@@ -113,16 +113,12 @@ sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils vulkan-icd-loader nvidia-s
 
 # Set Swappiness
 sudo gedit /etc/sysctl.d/99-swappiness.conf
-
 vm.swappiness=10
 
 # Install git + yay
 sudo pacman -S git
-
 git clone https://aur.archlinux.org/yay.git
-
 cd yay
-
 makepkg -si
 
 
