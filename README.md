@@ -70,14 +70,17 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Check efi entries
 efibootmgr
 
-# Set Locale to en_IN.UTF-8 + Time + Hwclock
+# Set Locale to en_IN.UTF-8
 nano /etc/locale.gen
-# uncomment en_IN.UTF-8 + en_US.UTF-8
+// uncomment en_IN.UTF-8 and en_US.UTF-8
+
 locale-gen
 
 echo LANG=en_IN.UTF-8 > /etc/locale.conf
 
 export LANG=en_IN.UTF-8
+
+# Timezone
 
 ls /usr/share/zoneinfo/
 
@@ -94,14 +97,11 @@ hwclock --systohc
 echo hostnamehere > /etc/hostname
 
 # Enable ILoveCandy + Colour support in pacman
-nano /etc/pacman.conf
-# uncomment "#Color"
-# add "ILoveCandy" in the misc options part on a new line below "#VerbosePkgLists"
+nano /etc/pacman.conf 	// uncomment "#Color" and add "ILoveCandy" in the misc options part on a new line below "#VerbosePkgLists"
 
 # Enable multilib for 32bit applications
-nano /etc/pacman.conf
-# uncomment "#[multilib]"
-# uncomment "#Include = /etc/pacman.d/mirrorlist"
+nano /etc/pacman.conf 	// uncomment "#[multilib]" and "#Include = /etc/pacman.d/mirrorlist"
+
 pacman -Syu
 
 # Setup Users (username is the user, change to the name that is required)
@@ -113,8 +113,7 @@ passwd username
 
 
 # setup sudo for group "wheel" using the root password - must use "EDITOR=nano visudo" command
-EDITOR=nano visudo
-# Search for "#%wheel ALL=(ALL) ALL" and uncomment that line and add this line "Defaults rootpw" below so it
+EDITOR=nano visudo 	//Search for "#%wheel ALL=(ALL) ALL" and uncomment that line and add this line "Defaults rootpw" below so it
 
 # Desktop Environment
 pacman -S xorg-server lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xfce4 xfce4-goodies networkmanager gufw bluez alsa-utils bluez-utils pulseaudio-bluetooth ttf-dejavu ttf-opensans ttf-liberation noto-fonts noto-fonts-emoji ntfs-3g gnome-disk-utility gnome-system-monitor reflector neofetch blueman xorg-xrandr
@@ -145,13 +144,18 @@ sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils vulkan-icd-loader nvidia-s
 
 # Set Swappiness
 sudo gedit /etc/sysctl.d/99-swappiness.conf
+
 vm.swappiness=10
 
 # Install git + yay
 sudo pacman -S git
+
 git clone https://aur.archlinux.org/yay.git
+
 cd yay
+
 makepkg -si
+
 
 # Install OPTIMUS for NVIDIA+Intel UHD Laptops
 yay -S optimus-manager optimus-manager-qt
@@ -161,8 +165,11 @@ yay -S visual-studio-code-bin libreoffice-fresh gedit vlc telegram-desktop gpart
 
 # Install gnome screenshot tool
 yay -S gnome-screenshot
+
 mkdir -p /home/username/Pictures/Screenshots
+
 gsettings set org.gnome.gnome-screenshot auto-save-directory file:///home/username/Pictures/Screenshots
+
 
 # Packages for Building ANDROID
 yay -S multilib-devel ccache maven gradle gcc repo gnupg gperf sdl wxgtk2 squashfs-tools curl ncurses zlib schedtool perl-switch zip unzip libxslt bc rsync ccache lib32-zlib lib32-ncurses lib32-readline ncurses5-compat-libs lib32-ncurses5-compat-libs lib32-gcc-libs gnupg flex bison gperf sdl wxgtk2 squashfs-tools curl ncurses zlib schedtool perl-switch libxslt python2-virtualenv bc rsync lib32-zlib lib32-ncurses lib32-readline xml2 lzop pngcrush imagemagick
@@ -172,10 +179,15 @@ xrandr --output HDMI-1 --set "Broadcast RGB" "Full"
 
 # Nuke GnuPG
 sudo rm -fr /etc/pacman.d/gnupg
+
 sudo pacman-key --init
+
 sudo pacman-key --populate archlinux
+
 sudo pacman-key --refresh-keys
+
 sudo pacman -Syu
+
 
 # Trim
 fstrim -v /
