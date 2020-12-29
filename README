@@ -121,6 +121,24 @@ git clone https://aur.archlinux.org/yay.git
 cd yay
 makepkg -si
 
+# Make ZSH more efficient
+yay -S curl
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+
+# Add configurations to ~/.zshrc file. Edit the plugins=(git) to the following
+nano ~/.zshrc
+plugins=(zsh-autosuggestions git zsh-syntax-highlighting)
+
+# Powerline10k theme
+git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+nano ~/.zshrc
+#Change ZSH_THEME to "powerlevel10k/powerlevel10k"
+# change/add POWERLEVEL9K_MODE="nerdfont-hack"
+
+#Logout and log in again
+
 
 # Install OPTIMUS for NVIDIA+Intel UHD Laptops
 yay -S optimus-manager optimus-manager-qt
