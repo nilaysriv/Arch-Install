@@ -92,7 +92,7 @@ passwd username
 EDITOR=nano visudo 	
 
 # Desktop Environment
-pacman -S xorg-server lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xfce4 xfce4-goodies networkmanager gedit gufw bluez alsa-utils bluez-utils pulseaudio-bluetooth ttf-dejavu ttf-opensans ttf-liberation noto-fonts noto-fonts-emoji ntfs-3g gnome-disk-utility gnome-system-monitor reflector neofetch blueman xorg-xrandr
+pacman -S xorg-server lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xfce4 xfce4-goodies networkmanager gedit gufw pavucontrol bluez alsa-utils bluez-utils pulseaudio-bluetooth ttf-dejavu ttf-opensans ttf-liberation noto-fonts noto-fonts-emoji ntfs-3g gnome-disk-utility gnome-system-monitor reflector neofetch blueman xorg-xrandr
 
 # Enable services and boot to system
 systemctl enable fstrim.timer
