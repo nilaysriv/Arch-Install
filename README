@@ -92,7 +92,7 @@ passwd username
 EDITOR=nano visudo 	
 
 # Desktop Environment
-pacman -S xorg-server lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xfce4 xfce4-goodies networkmanager gufw bluez alsa-utils bluez-utils pulseaudio-bluetooth ttf-dejavu ttf-opensans ttf-liberation noto-fonts noto-fonts-emoji ntfs-3g gnome-disk-utility gnome-system-monitor reflector neofetch blueman xorg-xrandr
+pacman -S xorg-server lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings xfce4 xfce4-goodies networkmanager gedit gufw bluez alsa-utils bluez-utils pulseaudio-bluetooth ttf-dejavu ttf-opensans ttf-liberation noto-fonts noto-fonts-emoji ntfs-3g gnome-disk-utility gnome-system-monitor reflector neofetch blueman xorg-xrandr
 
 # Enable services and boot to system
 systemctl enable fstrim.timer
@@ -133,6 +133,7 @@ plugins=(zsh-autosuggestions git zsh-syntax-highlighting)
 
 # Powerline10k theme
 git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/themes/powerlevel10k
+yay -S nerd-fonts-hack
 nano ~/.zshrc
 #Change ZSH_THEME to "powerlevel10k/powerlevel10k"
 # change/add POWERLEVEL9K_MODE="nerdfont-hack"
