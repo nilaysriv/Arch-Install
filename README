@@ -182,4 +182,16 @@ yay -S lutris steam wine-staging giflib lib32-giflib libpng lib32-libpng libldap
 # FPS Monitoring in games
 yay -S mangohud-git lib32-mangohud-git goverlay-bin
 
+#Set up KVM
+yay -S virt-manager qemu vde2 ebtables dnsmasq bridge-utils openbsd-netcat
+sudo systemctl enable --now libvirtd.service
+sudo usermod -a -G libvirt $(whoami)
+newgrp libvirt
+sudo systemctl restart libvirtd.service
+sudo modprobe -r kvm_intel
+sudo modprobe kvm_intel nested=1
+echo "options kvm-intel nested=1" | sudo tee /etc/modprobe.d/kvm-intel.conf
+
+
+
 ##### Complete #####
