@@ -1,4 +1,4 @@
-acpi
+
 alsa-plugins
 alsa-utils
 android-tools
@@ -12,9 +12,6 @@ base
 bc
 binutils
 bison
-blueberry
-bluez
-bluez-utils
 bridge-utils
 brightnessctl
 btrfs-progs
@@ -144,7 +141,6 @@ playerctl
 pngcrush
 polkit-gnome
 pulseaudio
-pulseaudio-bluetooth
 python2-virtualenv
 qbittorrent
 qemu
@@ -195,7 +191,6 @@ xdotool
 xfce4-terminal
 xorg-fonts-misc
 xorg-server
-xorg-xbacklight
 xorg-xdpyinfo
 xorg-xinit
 xorg-xrandr
